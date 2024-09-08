@@ -1,7 +1,7 @@
 ---
 page_id: about
 layout: about
-title: Acerca de mí
+title: acerca de mí
 permalink: /
 subtitle: AI. Generative Models. Audio. Music. Creativity.
 
@@ -14,8 +14,8 @@ profile:
     <p>Av. Vicuña Mackenna 4860</p>
     <p>Macul, Santiago, Chile</p>
 
-news: false # includes a list of news items
-latest_posts: true # includes a list of the newest posts
+news: true # includes a list of news items
+latest_posts: false # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
