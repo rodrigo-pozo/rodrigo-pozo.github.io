@@ -1,101 +1,89 @@
-- title: Informações Gerais
+- title: General Information
   type: map
   contents:
-    - name: Nome Completo
-      value: Albert Einstein
-    - name: Data de Nascimento
-      value: 14 de março de 1879
-    - name: Idiomas
-      value: Inglês, Alemão
-
-- title: Educação
+    - name: Full Name
+      value: Rodrigo Pozo
+    - name: Email
+      value: rfpozo@uc.cl
+    - name: Phone
+      value: +56 9 8741 9540
+    - name: Languages
+      value: Inglés, Español
+- title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurique, Suíça
-      year: 1905
+    - title: Magíster en Ciencias de la Ingeniería
+      institution: Pontificia Universidad Católica de Chile
+      year: 2023 - Act.
       description:
-        - Descrição 1.
-        - Descrição 2.
-        - title: Descrição 3.
-          contents:
-            - Sub-descrição 1.
-            - Sub-descrição 2.
-    - title: Diploma de ensino federal
-      institution: Eidgenössische Technische Hochschule, Zurique, Suíça
-      year: 1900
+        - Objeto de estudio: Utilización de modelos generativos de redes neuronales profundas (GANS, VAEs, Diffusion Models, Transformers) para estudiar creatividad computacional en audio y música
+    - title: Ingeniería eléctrica
+      institution: Pontificia Universidad Católica de Chile
+      year: 2019 - Act.
       description:
-        - Descrição 1.
-        - Descrição 2.
-
-- title: Experiência
+        - Actualmente me encuentro cursando un programa de pregrado que conduce al título de ingeniero civil electricista con una mención en programación.
+    - title: Enseñanza Media
+      institution: Liceo José Victorino Lastarria
+      year: 2011 - 2019
+      description:
+        - Location: Providencia
+- title: Experience
   type: time_table
   contents:
-    - title: Professor de Física Teórica
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Práctica profesional
+      institution: Manglar Labs SpA
+      year: Dic. 2023 - Mar. 2024
       description:
-        - Descrição 1.
-        - Descrição 2.
-        - title: Descrição 3.
-          contents:
-            - Sub-descrição 1.
-            - Sub-descrição 2.
-    - title: Professor Visitante
-      institution: California Institute of Technology, Pasadena, Califórnia, EUA
-      year: 1933
+        - Location: Providencia
+        - Se llevó a cabo la recopilación de requisitos para sistemas de Internet de las Cosas (IoT), con un enfoque particular en la comunicación satelital.
+        - Se evaluó un módulo de comunicación satelital, realizando diversas pruebas como la medición del consumo energético, el diseño de un caso de uso para el sector ganadero, y pruebas de campo.
+        - Se preparó un informe técnico que recopiló los resultados obtenidos y las conclusiones derivadas del proyecto.
+    - title: Pasantía de mantenimiento eléctrico
+      institution: Madeco by Nexans
+      year: Enero 2023
       description:
-        - Descrição 1.
-        - Descrição 2.
-
-    - title: Diretor
-      institution: Kaiser Wilhelm Institute for Physics, Berlim, Alemanha.
-      year: 1917-1933
-
-    - title: Professor de Física Teórica
-      institution: Karl-Ferdinand University, Praga, Tchecoslováquia
-      year: 1911 - 1917
+        - Location: San Miguel
+        - Se desarrollaron tareas de mantenimiento preventivo en maquinaria y líneas de producción en la fábrica de cables Madeco by Nexans, con un enfoque especializado en el campo eléctrico.
+        - Las responsabilidades incluían el mantenimiento y la calibración de los paneles eléctricos, la implementación de protocolos de limpieza y la inspección de motores e instrumentación.
+    - title: Investigación de pregrado
+      institution: Facultad de Ingeniería UC
+      year: 2021 - 2022
       description:
-
-    - title: Professor Associado de Física Teórica
-      institution: University of Zurich, Zurique, Suíça
-      year: 1909 - 1911
-
-- title: Projetos de Código Aberto
-  type: time_table
+        - Location: Macul
+        - Se desarrollaron simulaciones computacionales para estudiar los efectos sistemáticos presentes en la óptica utilizada por los experimentos cosmológicos que observan el fondo cósmico desde Chile.
+        - Se colaboró directamente con los principales experimentos en esta área, contribuyendo a la caracterización y el control de tales efectos.
+        - Específicamente, se modeló la respuesta óptica de los telescopios de CLASS utilizando el General Reflector Antenna Software Package (GRASP), lo que permitió analizar y mitigar los efectos sistemáticos en la óptica de estos telescopios.
+    - title: Trabajos de invierno
+      institution: Voluntariado
+      year: 2022
+      description:
+        - Location: Nueva Imperial, Araucanía
+        - Construcción de herramientas para superar la pobreza como corrales de cerdos, invernaderos, gallineros, hornos de barro, etc. Todo esto destinado a familias de bajos recursos en la Región de la Araucanía. Esto se realizó en una comisión de 180 voluntarios de distintas profesiones y universidades.
+- title: Skills
+  type: map
   contents:
-    - title: <a href="https://github.com/george-gca/multi-language-al-folio">multi-language-al-folio</a>
-      year: 2023-atual
-      description: Uma variação do tema al-folio com suporte a múltiplos idiomas.
-
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-atual
-      description: Um tema Jekyll bonito, simples, limpo e responsivo para acadêmicos.
-
-- title: Honrarias e Prêmios
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Prêmio Nobel de Física
-        - Medalha Matteucci
-    - year: 2029
-      items:
-        - Medalha Max Planck
-
-- title: Interesses Acadêmicos
-  type: nested_list
-  contents:
-    - title: Tópico 1.
-      items:
-        - Descrição 1.
-        - Descrição 2.
-    - title: Tópico 2.
-      items:
-        - Descrição 1.
-        - Descrição 2.
-
-- title: Outros Interesses
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - name: Data Science
+      value:
+        - Pandas: Avanzado
+        - Matplotlib: Avanzado
+        - Mathematica: Avanzado
+        - Pytorch: Intermedio
+        - Tensorflow: Intermedio
+        - MATLAB: Intermedio
+        - MongoDB: Básico
+    - name: Languages
+      value:
+        - Python: Avanzado
+        - C/C++: Avanzado
+        - JavaScript: Básico
+        - SQL: Intermedio
+        - Matlab: Intermedio
+    - name: Simulation
+      value:
+        - LTSpice: Avanzado
+        - GRASP: Intermedio
+        - Vivado: Intermedio
+    - name: Office
+      value:
+        - MS Office: Intermedio
+        - LaTeX: Avanzado
