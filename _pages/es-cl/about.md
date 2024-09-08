@@ -1,14 +1,14 @@
 ---
 page_id: about
 layout: about
-title: sobre
+title: Acerca de mí
 permalink: /
 subtitle: AI. Generative Models. Audio. Music. Creativity.
 
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: true# crops the image to make it circular
+  image_circular: false # crops the image to make it circular
   more_info: >
     <p>Pontificia Universidad Católica de Chile</p>
     <p>Av. Vicuña Mackenna 4860</p>

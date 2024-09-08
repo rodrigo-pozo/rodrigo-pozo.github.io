@@ -236,6 +236,8 @@ exclude:
   - readme_preview/
   - UPGRADING.md
   - vendor
+  - _pages/en-us/unused/
+  - _pages/es-cl/unused/
 keep_files:
   - CNAME
   - .nojekyll
