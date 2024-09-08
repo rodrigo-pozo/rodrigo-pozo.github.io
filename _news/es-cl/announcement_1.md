@@ -1,33 +1,16 @@
 ---
 layout: post
-title: Um anúncio longo com detalhes
-date: 2015-11-07 16:11:00-0400
+title: Primer lugar en el hackathon "Data Challenge in the Cloud" de Google
+date: 2024-09-04 16:11:00-0400
 inline: false
 related_posts: false
 ---
 
-Anúncios e notícias podem ser muito mais longos do que apenas postagens rápidas em uma linha. Na verdade, eles podem ter todos os recursos disponíveis para as postagens padrão do blog. Veja abaixo.
+Estoy encantado de anunciar que nuestro equipo de postgrado de Pontificia Universidad Católica se alzó con el primer lugar en el hackathon “Data Challenge in the Cloud”! La competencia, celebrada en las oficinas de Google en Chile y respaldada por Le Wagon, Kaggle y Google Cloud, fue un desafío verdaderamente emocionante.
 
----
+El reto consistía en desarrollar un sistema innovador de detección de fraudes, y nuestro equipo, conformado por Luis Miranda, Oscar Loch, Cristóbal Vásquez y yo, Rodrigo Pozo, logró destacarse con nuestra solución. Fue una experiencia muy enriquecedora enfrentarnos a este desafío en un entorno tan inspirador.
 
-Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.
+![Image](/assets/img/google_hackathon_2024.jpg)
 
-#### Hipster list
+[Post oficial de la universidad](https://www.uc.cl/noticias/estudiantes-de-postgrado-de-la-uc-ganan-en-hackathon-data-challenge-in-the-cloud-de-google/)
 
-<ul>
-    <li>brunch</li>
-    <li>fixie</li>
-    <li>raybans</li>
-    <li>messenger bag</li>
-</ul>
-
-Hoodie Thundercats retro, tote bag 8-bit Godard craft beer gastropub. Truffaut Tumblr taxidermy, raw denim Kickstarter sartorial dreamcatcher. Quinoa chambray slow-carb salvia readymade, bicycle rights 90's yr typewriter selfies letterpress cardigan vegan.
-
----
-
-Pug heirloom High Life vinyl swag, single-origin coffee four dollar toast taxidermy reprehenderit fap distillery master cleanse locavore. Est anim sapiente leggings Brooklyn ea. Thundercats locavore excepteur veniam eiusmod. Raw denim Truffaut Schlitz, migas sapiente Portland VHS twee Bushwick Marfa typewriter retro id keytar.
-
-> We do not grow absolutely, chronologically. We grow sometimes in one dimension, and not in another, unevenly. We grow partially. We are relative. We are mature in one realm, childish in another.
-> —Anais Nin
-
-Fap aliqua qui, scenester pug Echo Park polaroid irony shabby chic ex cardigan church-key Odd Future accusamus. Blog stumptown sartorial squid, gastropub duis aesthetic Truffaut vero. Pinterest tilde twee, odio mumblecore jean shorts lumbersexual.

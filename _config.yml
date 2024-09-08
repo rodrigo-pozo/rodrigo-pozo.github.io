@@ -238,6 +238,8 @@ exclude:
   - vendor
   - _pages/en-us/unused/
   - _pages/es-cl/unused/
+  - _news/en-us/unused/
+  - _news/es-cl/unused/
 keep_files:
   - CNAME
   - .nojekyll
