@@ -24,7 +24,7 @@ layout: default
           {% else %}
             {% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}
           {% endif %}
-          {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
+          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
       30vw, 95vw"{% endcapture %}
           {%
             include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
@@ -48,7 +48,7 @@ layout: default
     {% endif %}
 
     <!-- Latest posts -->
-    {% if page.latest_posts %}
+    {% if site.latest_posts.enabled %}
       <h2>
         <a href="{{ '/blog/' | relative_url }}" style="color: inherit">{{ site.data[site.active_lang].strings.latest_posts }}</a>
       </h2>
@@ -70,6 +70,10 @@ layout: default
 
         <div class="contact-note">{{ site.data[site.active_lang].strings.contact_note }}</div>
       </div>
+    {% endif %}
+
+    {% if site.newsletter.enabled and site.footer_fixed %}
+      {% include scripts/newsletter.liquid center=true %}
     {% endif %}
   </article>
 </div>

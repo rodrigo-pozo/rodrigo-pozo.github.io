@@ -67,7 +67,7 @@ pagination:
 {% assign is_even = featured_posts.size | modulo: 2 %}
 <div class="row row-cols-{% if featured_posts.size <= 2 or is_even == 0 %}2{% else %}3{% endif %}">
 {% for post in featured_posts %}
-<div class="card-item col">
+<div class="col mb-4">
 <a href="{{ post.url | relative_url }}">
 <div class="card hoverable">
 <div class="row g-0">
@@ -145,7 +145,7 @@ pagination:
       <p>{{ post.description }}</p>
       <p class="post-meta">
         {{ read_time }} min read &nbsp; &middot; &nbsp;
-        {% include date_format.liquid format="long" date_from=post %}
+        {% include date_format.liquid format="long" date=post.date %}
         {% if post.external_source %}
         &nbsp; &middot; &nbsp; {{ post.external_source }}
         {% endif %}
@@ -158,7 +158,10 @@ pagination:
           &nbsp; &middot; &nbsp;
             {% for tag in post.tags %}
             <a href="{{ tag | slugify | prepend: '/blog/tag/' | prepend: site.baseurl}}">
-              <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a> &nbsp;
+              <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
+              {% unless forloop.last %}
+                &nbsp;
+              {% endunless %}
               {% endfor %}
           {% endif %}
 
@@ -166,7 +169,10 @@ pagination:
           &nbsp; &middot; &nbsp;
             {% for category in post.categories %}
             <a href="{{ category | slugify | prepend: '/blog/category/' | prepend: site.baseurl}}">
-              <i class="fa-solid fa-tag fa-sm"></i> {{ category }}</a> &nbsp;
+              <i class="fa-solid fa-tag fa-sm"></i> {{ category }}</a>
+              {% unless forloop.last %}
+                &nbsp;
+              {% endunless %}
               {% endfor %}
           {% endif %}
     </p>
@@ -176,7 +182,7 @@ pagination:
 </div>
 
   <div class="col-sm-3">
-    <img class="card-img" src="{{post.thumbnail | relative_url}}" style="object-fit: cover; height: 90%" alt="image">
+    <img class="card-img" src="{{ post.thumbnail | relative_url }}" style="object-fit: cover; height: 90%" alt="image">
   </div>
 </div>
 {% endif %}

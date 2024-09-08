@@ -1,6 +1,8 @@
 # Customize
 
-Here we will give you some tips on how to customize the website. Note that throughout the [README.md](README.md) and [CUSTOMIZE.md](CUSTOMIZE.md) files, the default language is English (LANG = en-us). You must have an equivalent file or path for each language you have defined in [\_config.yml](_config.yml). For example, if you have defined `languages: ["en-us", "pt-br"]`, you must have 2 versions of the file `_data/LANG/cv.yml`: [\_data/en-us/cv.yml](_data/en-us/cv.yml) and [\_data/pt-br/cv.yml](_data/pt-br/cv.yml).
+Here we will give you some tips on how to customize the website. One important thing to note is that **ALL** the changes you make should be done on the **main** branch of your repository. The `gh-pages` branch is automatically overwritten every time you make a change to the main branch.
+
+Note that throughout the [README.md](README.md) and [CUSTOMIZE.md](CUSTOMIZE.md) files, the default language is English (LANG = en-us). You must have an equivalent file or path for each language you have defined in [\_config.yml](_config.yml). For example, if you have defined `languages: ["en-us", "pt-br"]`, you must have 2 versions of the file `_data/LANG/cv.yml`: [\_data/en-us/cv.yml](_data/en-us/cv.yml) and [\_data/pt-br/cv.yml](_data/pt-br/cv.yml).
 
 ## Project structure
 
@@ -46,13 +48,13 @@ The configuration file [\_config.yml](_config.yml) contains the main configurati
 
 > Note that the `url` and `baseurl` settings are used to generate the links of the website, as explained in the [install instructions](INSTALL.md).
 
-All changes made to this file are only visible after you rebuild the website. That means that you need to run `bundle exec jekyll serve --lsi` again if you are running the website locally or push your changes to GitHub if you are using GitHub Pages. All other changes are visible immediately, you only need to refresh the page.
+All changes made to this file are only visible after you rebuild the website. That means that you need to run `bundle exec jekyll serve` again if you are running the website locally or push your changes to GitHub if you are using GitHub Pages. All other changes are visible immediately, you only need to refresh the page.
 
 ## Displaying countries flags
 
 To display countries flags instead of the language initials in the header, you can set `country_flag: true` in the [\_config.yml](_config.yml) file. You should also add the countries' svg flags in the [assets/img/flags/](assets/img/flags/) directory. You can find the flags in the [flag-icons repository](https://github.com/lipis/flag-icons/tree/main/flags). When selecting the flags, the code uses the last part (after the `-`) of the site languages. So when looking for the flag of the language `pt-br`, the code will look for the file `br.svg` in the [assets/img/flags/](assets/img/flags/) directory.
 
-![Use country flag instead of language name](assets/img/readme_preview/country_flag.png)
+![Use country flag instead of language name](readme_preview/country_flag.png)
 
 ## Modifying the CV information
 
@@ -66,7 +68,7 @@ The user and repository information is defined in [\_data/repositories.yml](_dat
 
 ## Creating new pages
 
-You can create new pages by adding new Markdown files in the [\_pages](_pages/) directory. The easiest way to do this is to copy an existing page and modify it. To have the page be displayed for different languages, simply create one markdown file with the same name in each language. It is possible to [use different permalinks per language](https://github.com/untra/polyglot?tab=readme-ov-file#using-different-permalinks-per-language) if you want to. You can choose the layout of the page in the [frontmatter](https://jekyllrb.com/docs/front-matter/) of the Markdown file. You can also add new layouts in the [\_layouts](_layouts/) directory if you feel the need for it.
+You can create new pages by adding new Markdown files in the [\_pages](_pages/) directory. The easiest way to do this is to copy an existing page and modify it. You can choose the layout of the page by changing the [layout](https://jekyllrb.com/docs/layouts/) attribute in the [frontmatter](https://jekyllrb.com/docs/front-matter/) of the Markdown file, and also the path to access it by changing the [permalink](https://jekyllrb.com/docs/permalinks/) attribute. You can also add new layouts in the [\_layouts](_layouts/) directory if you feel the need for it. To have the page be displayed for different languages, simply create one markdown file with the same name in each language. It is possible to [use different permalinks per language](https://github.com/untra/polyglot?tab=readme-ov-file#using-different-permalinks-per-language) if you want to.
 
 ## Creating new blog posts
 
@@ -92,7 +94,7 @@ You can easily create your own collections, apps, short stories, courses, or wha
 
 To add publications create a new entry in the [\_bibliography/papers.bib](_bibliography/papers.bib) file. You can find the BibTeX entry of a publication in Google Scholar by clicking on the quotation marks below the publication title, then clicking on "BibTeX", or also in the conference page itself. By default, the publications will be sorted by year and the most recent will be displayed first. You can change this behavior and more in the `Jekyll Scholar` section in [\_config.yml](_config.yml) file.
 
-You can add extra information to a publication, like a PDF file in the `assets/pdfs/` directory and add the path to the PDF file in the BibTeX entry with the `pdf` field. Some of the supported fields are: `abstract`, `altmetric`, `arxiv`, `bibtex_show`, `blog`, `code`, `dimensions`, `doi`, `eprint`, `html`, `isbn`, `pdf`, `pmid`, `poster`, `slides`, `supp`, `video`, and `website`.
+You can add extra information to a publication, like a PDF file in the `assets/pdfs/` directory and add the path to the PDF file in the BibTeX entry with the `pdf` field. Some of the supported fields are: `abstract`, `altmetric`, `annotation`, `arxiv`, `bibtex_show`, `blog`, `code`, `dimensions`, `doi`, `eprint`, `html`, `isbn`, `pdf`, `pmid`, `poster`, `slides`, `supp`, `video`, and `website`.
 
 ### Author annotation
 
@@ -136,6 +138,7 @@ There are several custom bibtex keywords that you can use to affect how the entr
 - `abbr`: Adds an abbreviation to the left of the entry. You can add links to these by creating a venue.yaml-file in the \_data folder and adding entries that match.
 - `abstract`: Adds an "Abs" button that expands a hidden text field when clicked to show the abstract text
 - `altmetric`: Adds an [Altmetric](https://www.altmetric.com/) badge (Note: if DOI is provided just use `true`, otherwise only add the altmetric identifier here - the link is generated automatically)
+- `annotation`: Adds a popover info message to the end of the author list that can potentially be used to clarify superscripts. HTML is allowed.
 - `arxiv`: Adds a link to the Arxiv website (Note: only add the arxiv identifier here - the link is generated automatically)
 - `bibtex_show`: Adds a "Bib" button that expands a hidden text field with the full bibliography entry
 - `blog`: Adds a "Blog" button redirecting to the specified link
@@ -157,3 +160,9 @@ A variety of beautiful theme colors have been selected for you to choose from. T
 ## Adding social media information
 
 You can add your social media links by adding the specified information at the `Social integration` section in the [\_config.yml](_config.yml) file. This information will appear at the bottom of the `About` page.
+
+## Adding a newsletter
+
+You can add a newsletter subscription form by adding the specified information at the `newsletter` section in the [\_config.yml](_config.yml) file. To set up a newsletter, you can use a service like [Loops.so](https://loops.so/), which is the current supported solution. Once you have set up your newsletter, you can add the form [endpoint](https://loops.so/docs/forms/custom-form) to the `endpoint` field in the `newsletter` section of the [\_config.yml](_config.yml) file.
+
+Depending on your specified footer behavior, the sign up form either will appear at the bottom of the `About` page and at the bottom of blogposts if `related_posts` are enabled, or in the footer at the bottom of each page.
