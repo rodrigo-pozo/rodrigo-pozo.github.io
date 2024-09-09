@@ -15,9 +15,9 @@ profile:
     <p>Macul, Santiago, Chile</p>
 
 news: true # includes a list of news items
-latest_posts: false # includes a list of the newest posts
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
+latest_posts: false # includes a list of the newest posts
 ---
 
 <!-- Escreva sua biografia aqui. Diga ao mundo sobre você. Adicione o link para o seu [subreddit](http://reddit.com) favorito. Você pode colocar uma foto também. O código já está dentro, basta nomear sua foto como `prof_pic.jpg` e colocá-la na pasta `img/`. -->
