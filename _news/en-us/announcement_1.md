@@ -9,7 +9,8 @@ I am delighted to announce that our postgraduate team from Pontificia Universida
 
 The task was to develop an innovative fraud detection system, and our team, made up of Luis Miranda, Oscar Loch, Cristóbal Vásquez, and me, Rodrigo Pozo, stood out with our solution. It was a highly enriching experience to face this challenge in such an inspiring environment.
 
-![Image](google_hackathon_2024.jpg)
+
+{% include figure.liquid loading="eager" path="assets/img/google_hackaton_2024" class="img-fluid rounded z-depth-1" zoomable=true %}
 
 [Official post from the university](https://dcc.ing.uc.cl/estudiantes-de-postgrado-dcc-uc-ganan-en-hackathon-data-challenge-in-the-cloud/)
 

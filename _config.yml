@@ -242,6 +242,8 @@ exclude:
   - _news/es-cl/unused/
   - _data/en-us/unused/
   - _data/es-cl/unused/
+  - _posts/en-us/unused/
+  - _posts/es-cl/unused/
 keep_files:
   - CNAME
   - .nojekyll

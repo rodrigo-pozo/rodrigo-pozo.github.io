@@ -10,6 +10,6 @@ Estoy encantado de anunciar que nuestro equipo de postgrado de Pontificia Univer
 
 El reto consistía en desarrollar un sistema innovador de detección de fraudes, y nuestro equipo, conformado por Luis Miranda, Oscar Loch, Cristóbal Vásquez y yo, Rodrigo Pozo, logró destacarse con nuestra solución. Fue una experiencia muy enriquecedora enfrentarnos a este desafío en un entorno tan inspirador.
 
-![Image](google_hackathon_2024.jpg)
+{% include figure.liquid loading="eager" path="assets/img/google_hackaton_2024" class="img-fluid rounded z-depth-1" zoomable=true %}
 
 [Post oficial de la universidad](https://dcc.ing.uc.cl/estudiantes-de-postgrado-dcc-uc-ganan-en-hackathon-data-challenge-in-the-cloud/)
