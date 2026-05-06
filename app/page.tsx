@@ -4,7 +4,9 @@ import { Magnetic } from '@/components/ui/magnetic'
 import { Spotlight } from '@/components/ui/spotlight'
 import { ArrowUpRightIcon, MapPinIcon } from 'lucide-react'
 import { motion } from 'motion/react'
-import { EMAIL, PROJECTS, SOCIAL_LINKS, WORK_EXPERIENCE } from './data'
+import Link from 'next/link'
+import { EMAIL, PROJECTS, SOCIAL_LINKS, UI, WORK_EXPERIENCE } from './data'
+import { useLanguage } from './language-context'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -65,6 +67,9 @@ function SocialLink({ label, href }: { label: string; href: string }) {
 }
 
 export default function Personal() {
+  const { language } = useLanguage()
+  const copy = UI[language]
+
   return (
     <motion.main
       animate="visible"
@@ -78,18 +83,15 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <p className="text-lg leading-7 text-zinc-900 dark:text-zinc-100">
-          Data Scientist y M.Sc. Candidate en PUC Chile. Trabajo en visión por
-          computadora, deep learning multimodal y despliegue edge-to-cloud.
+          {copy.intro}
         </p>
         <p className="leading-7 text-zinc-600 dark:text-zinc-400">
-          También desarrollo software full-stack con React, Next.js, Electron y
-          Node.js. Me interesan los sistemas ML que pasan de prototipo a
-          operación: cámaras, colas, cloud, edge y métricas verificables.
+          {copy.introMore}
         </p>
         <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-500">
           <span className="inline-flex items-center gap-1">
             <MapPinIcon className="h-4 w-4" />
-            Santiago, Chile
+            {copy.location}
           </span>
           <span>/</span>
           <a className="underline underline-offset-4" href={`mailto:${EMAIL}`}>
@@ -103,12 +105,39 @@ export default function Personal() {
         </div>
       </motion.section>
 
-      <Section title="Experiencia">
+      <Section title={copy.featuredProjects}>
+        <div className="space-y-4">
+          {PROJECTS.map((project) => (
+            <Link
+              className="group block border-b border-zinc-100 pb-4 last:border-b-0 dark:border-zinc-800"
+              href={`/projects/${project.slug}`}
+              key={project.slug}
+            >
+              <div className="mb-1 flex items-center justify-between gap-3">
+                <h3 className="font-medium text-zinc-950 dark:text-zinc-50">
+                  {project.name}
+                </h3>
+                <ArrowUpRightIcon className="h-3.5 w-3.5 shrink-0 text-zinc-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </div>
+              <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                {project.description[language]}
+              </p>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {project.stack.slice(0, 4).map((tech) => (
+                  <Pill key={tech}>{tech}</Pill>
+                ))}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section title={copy.experience}>
         <div className="space-y-3">
           {WORK_EXPERIENCE.map((job) => (
             <article
               className="relative overflow-hidden rounded-lg bg-zinc-200/60 p-px dark:bg-zinc-800"
-              key={`${job.company}-${job.role}`}
+              key={`${job.company}-${job.role.en}`}
             >
               <Spotlight
                 className="from-zinc-950 via-zinc-700 to-zinc-500 blur-2xl dark:from-zinc-100 dark:via-zinc-300 dark:to-zinc-500"
@@ -118,14 +147,16 @@ export default function Personal() {
                 <div className="mb-2 flex flex-col justify-between gap-1 sm:flex-row">
                   <div>
                     <h3 className="font-medium text-zinc-950 dark:text-zinc-50">
-                      {job.role}
+                      {job.role[language]}
                     </h3>
                     <p className="text-sm text-zinc-500">{job.company}</p>
                   </div>
-                  <p className="text-sm text-zinc-500">{job.period}</p>
+                  <p className="text-sm text-zinc-500">
+                    {job.period[language]}
+                  </p>
                 </div>
                 <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                  {job.summary}
+                  {job.summary[language]}
                 </p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {job.stack.map((tech) => (
@@ -138,54 +169,13 @@ export default function Personal() {
         </div>
       </Section>
 
-      <Section title="Proyectos">
-        <div className="space-y-4">
-          {PROJECTS.map((project) => (
-            <article
-              className="border-b border-zinc-100 pb-4 last:border-b-0 dark:border-zinc-800"
-              key={project.name}
-            >
-              <div className="mb-1 flex flex-wrap items-center gap-2">
-                {project.link ? (
-                  <a
-                    className="group inline-flex items-center gap-1 font-medium text-zinc-950 dark:text-zinc-50"
-                    href={project.link}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    {project.name}
-                    <ArrowUpRightIcon className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
-                ) : (
-                  <h3 className="font-medium text-zinc-950 dark:text-zinc-50">
-                    {project.name}
-                  </h3>
-                )}
-              </div>
-              <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                {project.description}
-              </p>
-              {project.metrics ? (
-                <p className="mt-1 text-sm text-zinc-500">{project.metrics}</p>
-              ) : null}
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {project.stack.map((tech) => (
-                  <Pill key={tech}>{tech}</Pill>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section title="Noticia">
+      <Section title={copy.news}>
         <div className="rounded-lg border border-zinc-100 p-4 dark:border-zinc-800">
           <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
             <span className="font-medium text-zinc-950 dark:text-zinc-50">
               Sep 2024:
             </span>{' '}
-            1er lugar en Data Challenge in the Cloud, hackathon organizado en
-            Google Chile con sponsorship de Kaggle y Le Wagon.
+            {copy.newsItem}
           </p>
         </div>
       </Section>

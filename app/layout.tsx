@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes'
 import { Footer } from './footer'
 import './globals.css'
 import { Header } from './header'
+import { LanguageProvider } from './language-context'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s | Rodrigo Pozo Lagos',
   },
   description:
-    'Portfolio de Rodrigo Pozo Lagos, Data Scientist y M.Sc. Candidate en PUC Chile.',
+    'Portfolio of Rodrigo Pozo Lagos, Data Scientist and M.Sc. Candidate at PUC Chile.',
   icons: {
     icon: '/favicon-32x32.png',
   },
@@ -41,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
       >
@@ -53,9 +54,11 @@ export default function RootLayout({
         >
           <div className="flex min-h-screen w-full flex-col">
             <div className="relative mx-auto w-full max-w-2xl flex-1 px-5 pt-16 sm:pt-20">
-              <Header />
-              {children}
-              <Footer />
+              <LanguageProvider>
+                <Header />
+                {children}
+                <Footer />
+              </LanguageProvider>
             </div>
           </div>
         </ThemeProvider>
