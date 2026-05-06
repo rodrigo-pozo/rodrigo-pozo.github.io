@@ -227,25 +227,172 @@ export const PROJECTS: Project[] = [
     slug: 'lumincity',
     name: 'LUMinCity',
     description: {
-      en: 'Cross-platform desktop platform for urban simulation and territorial evolution scenarios.',
-      es: 'Plataforma desktop cross-platform para simulación urbana y escenarios de evolución territorial.',
+      en: 'Urban land-use simulation platform with a SaaS distribution portal and native desktop solver UI.',
+      es: 'Plataforma de simulacion de uso de suelo urbano con portal SaaS de distribucion y UI desktop para solver nativo.',
     },
     summary: {
-      en: 'Private platform and successor to CUBE Land and mu-Land.',
-      es: 'Plataforma privada y sucesor de CUBE Land y mu-Land.',
+      en: 'Two systems for the same client: a web SaaS for license and installer distribution, and a cross-platform desktop app connecting a React/Next.js frontend to a compiled scientific solver.',
+      es: 'Dos sistemas para el mismo cliente: un SaaS web para licencias y distribucion de instaladores, y una app desktop cross-platform que conecta un frontend React/Next.js con un solver cientifico compilado.',
     },
-    stack: ['React', 'Next.js', 'Electron', 'Node.js'],
+    stack: [
+      'Next.js',
+      'TypeScript',
+      'Electron',
+      'PostgreSQL',
+      'SQLite',
+      'Prisma',
+      'NextAuth',
+      'Tailwind CSS',
+      'Docker',
+      'electron-builder',
+    ],
     details: {
       en: [
-        'LUMinCity supports scenario visualization for territorial planning workflows.',
-        'The desktop shell is built with Electron, with a React/Next.js frontend and Node.js backend services.',
+        'LUMinCity is an urban land-use simulation platform built as two connected products for the same client.',
+        'The web platform is a full-stack SaaS for license requests, hardware device binding, admin approval, and installer delivery. Users download a device-specific utility that captures a hardware ID, which the app validates through a polling API before finalizing the license.',
+        'The admin workflow supports approving and rejecting requests, uploading .lic files, and managing installers and manuals.',
+        'The desktop app uses an Electron shell with a Next.js renderer to manage projects and simulation configurations, orchestrate DBF input files into a structured folder hierarchy, execute the native lumincity.exe solver through IPC, and stream real-time logs from the output file back to the UI.',
+        'The app validates the license file before execution and is packaged as a Windows NSIS installer.',
       ],
       es: [
-        'LUMinCity permite visualizar escenarios para flujos de planificación territorial.',
-        'La aplicación desktop usa Electron, con frontend en React/Next.js y servicios backend en Node.js.',
+        'LUMinCity es una plataforma de simulacion de uso de suelo urbano construida como dos productos conectados para el mismo cliente.',
+        'La plataforma web es un SaaS full-stack para solicitudes de licencia, vinculacion por hardware, aprobacion administrativa y entrega de instaladores. Los usuarios descargan una utilidad especifica del dispositivo que captura un hardware ID, que la app valida mediante una API de polling antes de finalizar la licencia.',
+        'El flujo de administracion permite aprobar y rechazar solicitudes, subir archivos .lic, y gestionar instaladores y manuales.',
+        'La app desktop usa un shell Electron con renderer Next.js para administrar proyectos y configuraciones de simulacion, organizar archivos DBF de entrada en una jerarquia de carpetas, ejecutar el solver nativo lumincity.exe via IPC, y transmitir logs en tiempo real desde el archivo de salida hacia la UI.',
+        'La app valida el archivo de licencia antes de ejecutar y se empaqueta como instalador Windows NSIS.',
       ],
     },
-    images: [],
+    images: [
+      {
+        src: '/projects/lumincity/01-web-landing-hero.png',
+        alt: {
+          en: 'LUMinCity web platform landing page',
+          es: 'Landing page de la plataforma web LUMinCity',
+        },
+        caption: { en: 'Web platform landing page.', es: 'Landing page web.' },
+      },
+      {
+        src: '/projects/lumincity/02-web-how-it-works.png',
+        alt: {
+          en: 'How it works view for the license workflow',
+          es: 'Vista de funcionamiento del flujo de licencias',
+        },
+        caption: {
+          en: 'License request and validation flow.',
+          es: 'Flujo de solicitud y validacion de licencias.',
+        },
+      },
+      {
+        src: '/projects/lumincity/03-web-license-request-form.png',
+        alt: {
+          en: 'License request form',
+          es: 'Formulario de solicitud de licencia',
+        },
+        caption: {
+          en: 'User-facing license request form.',
+          es: 'Formulario de solicitud de licencia.',
+        },
+      },
+      {
+        src: '/projects/lumincity/04-web-device-binding.png',
+        alt: {
+          en: 'Device binding utility screen',
+          es: 'Pantalla de vinculacion de dispositivo',
+        },
+        caption: {
+          en: 'Hardware ID capture and device binding.',
+          es: 'Captura de hardware ID y vinculacion de dispositivo.',
+        },
+      },
+      {
+        src: '/projects/lumincity/05-web-my-requests-approved.png',
+        alt: {
+          en: 'Approved license request view',
+          es: 'Vista de solicitud de licencia aprobada',
+        },
+        caption: {
+          en: 'Approved request with installer access.',
+          es: 'Solicitud aprobada con acceso al instalador.',
+        },
+      },
+      {
+        src: '/projects/lumincity/06-web-admin-license-requests.png',
+        alt: {
+          en: 'Admin license requests table',
+          es: 'Tabla administrativa de solicitudes de licencia',
+        },
+        caption: {
+          en: 'Admin approval workflow.',
+          es: 'Flujo de aprobacion administrativa.',
+        },
+      },
+      {
+        src: '/projects/lumincity/07-desktop-my-projects.png',
+        alt: {
+          en: 'Desktop app projects dashboard',
+          es: 'Dashboard de proyectos de la app desktop',
+        },
+        caption: {
+          en: 'Desktop project workspace.',
+          es: 'Workspace de proyectos desktop.',
+        },
+      },
+      {
+        src: '/projects/lumincity/08-desktop-simulation-form.png',
+        alt: {
+          en: 'Simulation configuration form',
+          es: 'Formulario de configuracion de simulacion',
+        },
+        caption: {
+          en: 'Simulation configuration UI.',
+          es: 'UI de configuracion de simulacion.',
+        },
+      },
+      {
+        src: '/projects/lumincity/09-desktop-file-upload.png',
+        alt: {
+          en: 'DBF input file upload step',
+          es: 'Paso de carga de archivos DBF de entrada',
+        },
+        caption: {
+          en: 'DBF input file orchestration.',
+          es: 'Organizacion de archivos DBF de entrada.',
+        },
+      },
+      {
+        src: '/projects/lumincity/10-desktop-pre-run-review.png',
+        alt: {
+          en: 'Pre-run simulation review',
+          es: 'Revision previa a la ejecucion de simulacion',
+        },
+        caption: {
+          en: 'Pre-run review before solver execution.',
+          es: 'Revision previa antes de ejecutar el solver.',
+        },
+      },
+      {
+        src: '/projects/lumincity/11-desktop-error-modal.png',
+        alt: {
+          en: 'Desktop app validation error modal',
+          es: 'Modal de error de validacion en la app desktop',
+        },
+        caption: {
+          en: 'Execution and validation states.',
+          es: 'Estados de ejecucion y validacion.',
+        },
+      },
+      {
+        src: '/projects/lumincity/12-desktop-simulation-logs.png',
+        alt: {
+          en: 'Real-time simulation log stream',
+          es: 'Stream de logs de simulacion en tiempo real',
+        },
+        caption: {
+          en: 'Real-time solver logs streamed back to the UI.',
+          es: 'Logs del solver transmitidos en tiempo real hacia la UI.',
+        },
+      },
+    ],
   },
   {
     slug: 'uoct-vehicle-monitoring',
