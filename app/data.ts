@@ -41,17 +41,16 @@ export const EMAIL = 'rfpozo@uc.cl'
 export const SOCIAL_LINKS = [
   { label: 'GitHub', href: 'https://github.com/dedmu5' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rodrigo-pozo' },
-  { label: 'Email', href: `mailto:${EMAIL}` },
 ]
 
 export const UI = {
   en: {
     tagline: 'Data Scientist · M.Sc. Candidate · Santiago, Chile',
-    intro:
-      'Data Scientist and M.Sc. Candidate at PUC Chile. I work on computer vision, multimodal deep learning, and edge-to-cloud deployment.',
+    intro: 'Building ML systems that go from research to production.',
     introMore:
-      'I also build full-stack software with React, Next.js, Electron, and Node.js. I care about ML systems that move from prototype to operation: cameras, queues, cloud, edge, and measurable performance.',
+      'Computer vision, deep learning, and edge-to-cloud deployment.\nM.Sc. Candidate at PUC Chile.',
     featuredProjects: 'Featured Projects',
+    moreProjects: 'More projects on GitHub',
     experience: 'Experience',
     projects: 'Projects',
     news: 'News',
@@ -67,11 +66,11 @@ export const UI = {
   },
   es: {
     tagline: 'Data Scientist · M.Sc. Candidate · Santiago, Chile',
-    intro:
-      'Data Scientist y M.Sc. Candidate en PUC Chile. Trabajo en visión por computadora, deep learning multimodal y despliegue edge-to-cloud.',
+    intro: 'Building ML systems that go from research to production.',
     introMore:
-      'También desarrollo software full-stack con React, Next.js, Electron y Node.js. Me interesan los sistemas ML que pasan de prototipo a operación: cámaras, colas, cloud, edge y métricas verificables.',
+      'Computer vision, deep learning, and edge-to-cloud deployment.\nM.Sc. Candidate at PUC Chile.',
     featuredProjects: 'Proyectos destacados',
+    moreProjects: 'Mas proyectos en GitHub',
     experience: 'Experiencia',
     projects: 'Proyectos',
     news: 'Noticia',

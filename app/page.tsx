@@ -1,12 +1,17 @@
 'use client'
 
 import { Magnetic } from '@/components/ui/magnetic'
-import { Spotlight } from '@/components/ui/spotlight'
 import { ArrowUpRightIcon, MapPinIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import { EMAIL, PROJECTS, SOCIAL_LINKS, UI, WORK_EXPERIENCE } from './data'
+import { EMAIL, PROJECTS, SOCIAL_LINKS, UI } from './data'
 import { useLanguage } from './language-context'
+
+const FEATURED_PROJECT_SLUGS = [
+  'uoct-vehicle-monitoring',
+  'lumincity',
+  'fusa-net',
+]
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -69,6 +74,9 @@ function SocialLink({ label, href }: { label: string; href: string }) {
 export default function Personal() {
   const { language } = useLanguage()
   const copy = UI[language]
+  const featuredProjects = FEATURED_PROJECT_SLUGS.map((slug) =>
+    PROJECTS.find((project) => project.slug === slug),
+  ).filter((project) => project !== undefined)
 
   return (
     <motion.main
@@ -85,7 +93,7 @@ export default function Personal() {
         <p className="text-lg leading-7 text-zinc-900 dark:text-zinc-100">
           {copy.intro}
         </p>
-        <p className="leading-7 text-zinc-600 dark:text-zinc-400">
+        <p className="leading-7 whitespace-pre-line text-zinc-600 dark:text-zinc-400">
           {copy.introMore}
         </p>
         <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-500">
@@ -107,7 +115,7 @@ export default function Personal() {
 
       <Section title={copy.featuredProjects}>
         <div className="space-y-4">
-          {PROJECTS.map((project) => (
+          {featuredProjects.map((project) => (
             <Link
               className="group block border-b border-zinc-100 pb-4 last:border-b-0 dark:border-zinc-800"
               href={`/projects/${project.slug}`}
@@ -129,54 +137,15 @@ export default function Personal() {
               </div>
             </Link>
           ))}
-        </div>
-      </Section>
-
-      <Section title={copy.experience}>
-        <div className="space-y-3">
-          {WORK_EXPERIENCE.map((job) => (
-            <article
-              className="relative overflow-hidden rounded-lg bg-zinc-200/60 p-px dark:bg-zinc-800"
-              key={`${job.company}-${job.role.en}`}
-            >
-              <Spotlight
-                className="from-zinc-950 via-zinc-700 to-zinc-500 blur-2xl dark:from-zinc-100 dark:via-zinc-300 dark:to-zinc-500"
-                size={72}
-              />
-              <div className="relative rounded-lg bg-white p-4 dark:bg-zinc-950">
-                <div className="mb-2 flex flex-col justify-between gap-1 sm:flex-row">
-                  <div>
-                    <h3 className="font-medium text-zinc-950 dark:text-zinc-50">
-                      {job.role[language]}
-                    </h3>
-                    <p className="text-sm text-zinc-500">{job.company}</p>
-                  </div>
-                  <p className="text-sm text-zinc-500">
-                    {job.period[language]}
-                  </p>
-                </div>
-                <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                  {job.summary[language]}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {job.stack.map((tech) => (
-                    <Pill key={tech}>{tech}</Pill>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section title={copy.news}>
-        <div className="rounded-lg border border-zinc-100 p-4 dark:border-zinc-800">
-          <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-            <span className="font-medium text-zinc-950 dark:text-zinc-50">
-              Sep 2024:
-            </span>{' '}
-            {copy.newsItem}
-          </p>
+          <a
+            className="inline-flex items-center gap-1 text-sm text-zinc-600 underline underline-offset-4 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100"
+            href="https://github.com/dedmu5"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {copy.moreProjects}
+            <ArrowUpRightIcon className="h-3.5 w-3.5" />
+          </a>
         </div>
       </Section>
     </motion.main>

@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  useEffect,
   useContext,
   useMemo,
   useState,
@@ -18,6 +19,12 @@ const LanguageContext = createContext<LanguageContextValue | null>(null)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('en')
+
+  useEffect(() => {
+    const browserLanguage = navigator.language.toLowerCase()
+
+    setLanguage(browserLanguage.startsWith('es') ? 'es' : 'en')
+  }, [])
 
   const value = useMemo(
     () => ({

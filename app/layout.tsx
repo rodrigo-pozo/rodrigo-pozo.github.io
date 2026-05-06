@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     'Portfolio of Rodrigo Pozo Lagos, Data Scientist and M.Sc. Candidate at PUC Chile.',
   icons: {
-    icon: '/favicon-32x32.png',
+    icon: '/favicon.png',
   },
 }
 
