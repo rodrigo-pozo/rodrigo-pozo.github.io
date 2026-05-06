@@ -4,7 +4,6 @@ import { Magnetic } from '@/components/ui/magnetic'
 import { Spotlight } from '@/components/ui/spotlight'
 import { ArrowUpRightIcon, MapPinIcon } from 'lucide-react'
 import { motion } from 'motion/react'
-import Image from 'next/image'
 import { EMAIL, PROJECTS, SOCIAL_LINKS, WORK_EXPERIENCE } from './data'
 
 const VARIANTS_CONTAINER = {
@@ -74,50 +73,33 @@ export default function Personal() {
       variants={VARIANTS_CONTAINER}
     >
       <motion.section
-        className="grid gap-6 sm:grid-cols-[112px_1fr]"
+        className="space-y-4"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <Image
-          alt="Rodrigo Pozo Lagos"
-          className="h-28 w-28 rounded-lg object-cover grayscale"
-          height={224}
-          priority
-          src="/profile.jpg"
-          width={224}
-        />
-        <div className="space-y-4">
-          <p className="text-lg leading-7 text-zinc-900 dark:text-zinc-100">
-            Data Scientist y M.Sc. Candidate en PUC Chile. Trabajo en visión por
-            computadora, deep learning multimodal y despliegue edge-to-cloud.
-          </p>
-          <p className="leading-7 text-zinc-600 dark:text-zinc-400">
-            También desarrollo software full-stack con React, Next.js, Electron
-            y Node.js. Me interesan los sistemas ML que pasan de prototipo a
-            operación: cámaras, colas, cloud, edge y métricas verificables.
-          </p>
-          <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-500">
-            <span className="inline-flex items-center gap-1">
-              <MapPinIcon className="h-4 w-4" />
-              Santiago, Chile
-            </span>
-            <span>·</span>
-            <a
-              className="underline underline-offset-4"
-              href={`mailto:${EMAIL}`}
-            >
-              {EMAIL}
-            </a>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {SOCIAL_LINKS.map((link) => (
-              <SocialLink
-                key={link.label}
-                href={link.href}
-                label={link.label}
-              />
-            ))}
-          </div>
+        <p className="text-lg leading-7 text-zinc-900 dark:text-zinc-100">
+          Data Scientist y M.Sc. Candidate en PUC Chile. Trabajo en visión por
+          computadora, deep learning multimodal y despliegue edge-to-cloud.
+        </p>
+        <p className="leading-7 text-zinc-600 dark:text-zinc-400">
+          También desarrollo software full-stack con React, Next.js, Electron y
+          Node.js. Me interesan los sistemas ML que pasan de prototipo a
+          operación: cámaras, colas, cloud, edge y métricas verificables.
+        </p>
+        <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-500">
+          <span className="inline-flex items-center gap-1">
+            <MapPinIcon className="h-4 w-4" />
+            Santiago, Chile
+          </span>
+          <span>/</span>
+          <a className="underline underline-offset-4" href={`mailto:${EMAIL}`}>
+            {EMAIL}
+          </a>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {SOCIAL_LINKS.map((link) => (
+            <SocialLink key={link.label} href={link.href} label={link.label} />
+          ))}
         </div>
       </motion.section>
 
