@@ -11,7 +11,7 @@ export function Header() {
     <header className="mb-12 flex items-start justify-between gap-6">
       <div>
         <h1 className="text-xl font-medium text-zinc-950 dark:text-zinc-50">
-          Rodrigo Pozo Lagos
+          Rodrigo Pozo
         </h1>
         <TextEffect
           as="p"

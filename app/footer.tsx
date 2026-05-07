@@ -47,7 +47,7 @@ export function Footer() {
     <footer className="mt-20 border-t border-zinc-100 py-5 dark:border-zinc-800">
       <div className="flex items-center justify-between gap-4">
         <p className="text-xs text-zinc-500">
-          © {new Date().getFullYear()} Rodrigo Pozo Lagos
+          © {new Date().getFullYear()} Rodrigo Pozo
         </p>
         <ThemeSwitch />
       </div>

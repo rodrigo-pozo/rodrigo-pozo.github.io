@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://rodrigo-pozo.github.io/'),
   alternates: { canonical: '/' },
   title: {
-    default: 'Rodrigo Pozo Lagos',
-    template: '%s | Rodrigo Pozo Lagos',
+    default: 'Rodrigo Pozo',
+    template: '%s | Rodrigo Pozo',
   },
   description:
-    'Portfolio of Rodrigo Pozo Lagos, Data Scientist and M.Sc. Candidate at PUC Chile.',
+    'Portfolio of Rodrigo Pozo, Data Scientist and M.Sc. Candidate at PUC Chile.',
   icons: {
     icon: '/favicon.png',
   },

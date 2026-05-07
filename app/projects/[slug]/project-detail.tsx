@@ -40,6 +40,8 @@ function ImageGrid({
   const [activeIndex, setActiveIndex] = useState(0)
   const activeImage = images[activeIndex]
   const hasMultipleImages = images.length > 1
+  const activeCaption =
+    activeImage?.caption?.[language] ?? activeImage?.alt[language]
 
   function showPrevious() {
     setActiveIndex((index) => (index === 0 ? images.length - 1 : index - 1))
@@ -100,7 +102,7 @@ function ImageGrid({
             ) : null}
           </div>
           <figcaption className="flex items-center justify-between gap-3 text-sm text-zinc-500">
-            <span>{activeImage.alt[language]}</span>
+            <span>{activeCaption}</span>
             {hasMultipleImages ? (
               <span className="shrink-0">
                 {activeIndex + 1} / {images.length}
@@ -190,7 +192,7 @@ export function ProjectDetail({ project }: { project: Project }) {
 
         <div className="space-y-3">
           <h1 className="text-2xl font-medium text-zinc-950 dark:text-zinc-50">
-            {project.name}
+            {project.name[language]}
           </h1>
           <p className="text-base leading-7 text-zinc-600 dark:text-zinc-400">
             {project.summary[language]}
@@ -217,18 +219,52 @@ export function ProjectDetail({ project }: { project: Project }) {
                 <h2 className="text-sm font-medium tracking-normal text-zinc-500 uppercase dark:text-zinc-500">
                   {section.title[language]}
                 </h2>
-                <p className="leading-7 text-zinc-700 dark:text-zinc-300">
+                <p className="leading-7 whitespace-pre-line text-zinc-700 dark:text-zinc-300">
                   {section.description[language]}
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {section.stack.map((tech) => (
-                    <Pill key={tech}>{tech}</Pill>
-                  ))}
-                </div>
+                {section.stack && section.stack.length > 0 ? (
+                  <div className="flex flex-wrap gap-1.5">
+                    {section.stack.map((tech) => (
+                      <Pill key={tech}>{tech}</Pill>
+                    ))}
+                  </div>
+                ) : null}
               </div>
-              <ImageGrid images={section.images} language={language} />
+              {section.images && section.images.length > 0 ? (
+                <ImageGrid images={section.images} language={language} />
+              ) : null}
             </section>
           ))}
+          {project.metrics ? (
+            <section>
+              <h2 className="mb-3 text-sm font-medium tracking-normal text-zinc-500 uppercase dark:text-zinc-500">
+                {copy.metrics}
+              </h2>
+              <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                {project.metrics[language]}
+              </p>
+            </section>
+          ) : null}
+          {project.showGlobalStack ? (
+            <section>
+              <h2 className="mb-3 text-sm font-medium tracking-normal text-zinc-500 uppercase dark:text-zinc-500">
+                {copy.stack}
+              </h2>
+              <div className="flex flex-wrap gap-1.5">
+                {project.stack.map((tech) => (
+                  <Pill key={tech}>{tech}</Pill>
+                ))}
+              </div>
+            </section>
+          ) : null}
+          {project.images.length > 0 ? (
+            <section>
+              <h2 className="mb-3 text-sm font-medium tracking-normal text-zinc-500 uppercase dark:text-zinc-500">
+                {copy.images}
+              </h2>
+              <ImageGrid images={project.images} language={language} />
+            </section>
+          ) : null}
         </div>
       ) : (
         <>
@@ -249,7 +285,7 @@ export function ProjectDetail({ project }: { project: Project }) {
                 {copy.metrics}
               </h2>
               <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                {project.metrics}
+                {project.metrics[language]}
               </p>
             </section>
           ) : null}

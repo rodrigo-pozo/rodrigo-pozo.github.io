@@ -90,23 +90,17 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <p className="text-lg leading-7 text-zinc-900 dark:text-zinc-100">
-          {copy.intro}
-        </p>
         <p className="leading-7 whitespace-pre-line text-zinc-600 dark:text-zinc-400">
-          {copy.introMore}
+          {copy.intro}
         </p>
         <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-500">
           <span className="inline-flex items-center gap-1">
             <MapPinIcon className="h-4 w-4" />
             {copy.location}
           </span>
-          <span>/</span>
-          <a className="underline underline-offset-4" href={`mailto:${EMAIL}`}>
-            {EMAIL}
-          </a>
         </div>
         <div className="flex flex-wrap gap-2">
+          <SocialLink href={`mailto:${EMAIL}`} label={copy.emailButton} />
           {SOCIAL_LINKS.map((link) => (
             <SocialLink key={link.label} href={link.href} label={link.label} />
           ))}
@@ -123,9 +117,8 @@ export default function Personal() {
             >
               <div className="mb-1 flex items-center justify-between gap-3">
                 <h3 className="font-medium text-zinc-950 dark:text-zinc-50">
-                  {project.name}
+                  {project.name[language]}
                 </h3>
-                <ArrowUpRightIcon className="h-3.5 w-3.5 shrink-0 text-zinc-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </div>
               <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
                 {project.description[language]}

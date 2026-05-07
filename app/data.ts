@@ -11,21 +11,22 @@ type ProjectImage = {
 type ProjectSection = {
   title: LocalizedText
   description: LocalizedText
-  stack: string[]
-  images: ProjectImage[]
+  stack?: string[]
+  images?: ProjectImage[]
 }
 
 export type Project = {
   slug: string
-  name: string
+  name: LocalizedText
   description: LocalizedText
   summary: LocalizedText
   link?: string
   stack: string[]
-  metrics?: string
+  metrics?: LocalizedText
   details: Record<Language, string[]>
   images: ProjectImage[]
   sections?: ProjectSection[]
+  showGlobalStack?: boolean
 }
 
 export type WorkExperience = {
@@ -45,12 +46,13 @@ export const SOCIAL_LINKS = [
 
 export const UI = {
   en: {
-    tagline: 'Data Scientist · M.Sc. Candidate · Santiago, Chile',
-    intro: 'Building ML systems that go from research to production.',
-    introMore:
-      'Computer vision, deep learning, and edge-to-cloud deployment.\nM.Sc. Candidate at PUC Chile.',
+    tagline: 'Computer Vision · Deep Learning · Edge-to-Cloud',
+    intro:
+      'Building ML systems that go from research to production.\nM.Sc. Candidate at PUC Chile.',
+    introMore: '',
     featuredProjects: 'Featured Projects',
     moreProjects: 'More projects on GitHub',
+    emailButton: 'Email',
     experience: 'Experience',
     projects: 'Projects',
     news: 'News',
@@ -65,12 +67,13 @@ export const UI = {
       '1st place at Data Challenge in the Cloud, a hackathon hosted at Google Chile with sponsorship from Kaggle and Le Wagon.',
   },
   es: {
-    tagline: 'Data Scientist · M.Sc. Candidate · Santiago, Chile',
-    intro: 'Building ML systems that go from research to production.',
-    introMore:
-      'Computer vision, deep learning, and edge-to-cloud deployment.\nM.Sc. Candidate at PUC Chile.',
+    tagline: 'Visión por Computadora · Deep Learning · Edge-to-Cloud',
+    intro:
+      'Construyo sistemas de ML que van desde la investigación a la producción.\nCandidato a Magíster en PUC Chile.',
+    introMore: '',
     featuredProjects: 'Proyectos destacados',
     moreProjects: 'Mas proyectos en GitHub',
+    emailButton: 'Correo',
     experience: 'Experiencia',
     projects: 'Proyectos',
     news: 'Noticia',
@@ -132,33 +135,69 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 export const PROJECTS: Project[] = [
   {
     slug: 'fusa-net',
-    name: 'FUSA-Net',
+    name: {
+      en: 'FUSA-Net: Cross-Modal Music Retrieval',
+      es: 'FUSA-Net: Recuperación Musical Cross-Modal',
+    },
     description: {
-      en: 'Cross-modal retrieval between sheet music and audio with contrastive learning.',
-      es: 'Retrieval cross-modal entre partituras y audio con contrastive learning.',
+      en: 'M.Sc. thesis — matching sheet music images to audio recordings using deep learning, without any human-labeled pairs.',
+      es: 'Tesis de Magíster — asociación de imágenes de partituras con grabaciones de audio usando deep learning, sin pares etiquetados manualmente.',
     },
     summary: {
-      en: 'Dual-encoder model for image-to-audio and audio-to-image retrieval. M.Sc. thesis, PUC Chile.',
-      es: 'Modelo dual-encoder para retrieval imagen-audio y audio-imagen. Tesis de Magíster, PUC Chile.',
+      en: 'M.Sc. thesis — matching sheet music images to audio recordings using deep learning, without any human-labeled pairs.',
+      es: 'Tesis de Magíster — asociación de imágenes de partituras con grabaciones de audio usando deep learning, sin pares etiquetados manualmente.',
     },
     link: 'https://github.com/dedmu5/FUSA-Net',
-    stack: ['PyTorch', 'transformers', 'CCA'],
-    metrics: 'Recall@1 66.87%, Recall@10 92.24%, modality gap 0.036',
+    stack: ['Python', 'PyTorch', 'transformers', 'contrastive learning', 'CCA'],
     details: {
-      en: [
-        'FUSA-Net aligns sheet-music images and audio representations in a shared embedding space.',
-        'The system uses contrastive learning to retrieve the matching modality without requiring paired metadata at inference time.',
-      ],
-      es: [
-        'FUSA-Net alinea imágenes de partituras y representaciones de audio en un espacio compartido.',
-        'El sistema usa contrastive learning para recuperar la modalidad correspondiente sin requerir metadata pareada en inferencia.',
-      ],
+      en: [],
+      es: [],
     },
     images: [],
+    sections: [
+      {
+        title: { en: 'The Problem', es: 'El Problema' },
+        description: {
+          en: 'Finding the audio recording that matches a given sheet music page — or vice versa — is a task humans do naturally, but machines struggle with. Audio and sheet music live in completely different representational spaces: one is sound, the other is a visual document. Bridging them requires learning a shared space where both can be compared directly.',
+          es: 'Encontrar la grabación de audio que corresponde a una partitura — o viceversa — es algo que los humanos hacen naturalmente, pero que resulta difícil para las máquinas. El audio y la partitura existen en espacios representacionales completamente distintos: uno es sonido, el otro es un documento visual. Conectarlos requiere aprender un espacio compartido donde ambos puedan compararse directamente.',
+        },
+      },
+      {
+        title: { en: 'The Dataset', es: 'El Dataset' },
+        description: {
+          en: 'No large-scale public dataset existed for this task. I built PDMX-FUSA from scratch: 116,626 public-domain piano scores transformed into 291,648 training examples, each containing a synthesized audio recording, a high-resolution score image, and MIDI data — all aligned at the measure level.',
+          es: 'No existía un dataset público a gran escala para esta tarea. Construí PDMX-FUSA desde cero: 116,626 partituras de piano de dominio público transformadas en 291,648 ejemplos de entrenamiento, cada uno con una grabación de audio sintetizada, una imagen de partitura en alta resolución y datos MIDI — todos alineados a nivel de compás.',
+        },
+      },
+      {
+        title: { en: 'The Architecture', es: 'La Arquitectura' },
+        description: {
+          en: 'FUSA-Net is a dual-encoder model: one branch processes audio, the other processes score images. Both produce embeddings in a shared 512-dimensional space, trained with contrastive learning so that matching pairs are pushed together and non-matching pairs are pushed apart.\n\nTwo design decisions made a significant difference. First, I used CCA (Canonical Correlation Analysis) to initialize the model in a geometrically favorable starting point, which made training 4.8× faster than standard approaches and more stable. Second, I added auxiliary prediction tasks — key, meter, polyphony — that force the shared space to organize itself around musically meaningful structure, not just identity matching.',
+          es: 'FUSA-Net es un modelo de doble encoder: una rama procesa audio, la otra procesa imágenes de partituras. Ambas producen embeddings en un espacio compartido de 512 dimensiones, entrenado con aprendizaje contrastivo para que los pares coincidentes se acerquen y los no coincidentes se alejen.\n\nDos decisiones de diseño marcaron una diferencia significativa. Primero, usé CCA (Análisis de Correlación Canónica) para inicializar el modelo en un punto de partida geométricamente favorable, lo que hizo el entrenamiento 4.8× más rápido que los enfoques estándar y más estable. Segundo, agregué tareas auxiliares de predicción — tonalidad, métrica, polifonía — que fuerzan al espacio compartido a organizarse en torno a estructura musicalmente significativa, no solo coincidencia de identidad.',
+        },
+        images: [
+          {
+            src: '/projects/fusa-net/01-architecture.png',
+            alt: {
+              en: 'FUSA-Net dual-encoder architecture diagram',
+              es: 'Diagrama de arquitectura dual-encoder de FUSA-Net',
+            },
+          },
+        ],
+      },
+      {
+        title: { en: 'Results', es: 'Resultados' },
+        description: {
+          en: 'Recall@1 = 66.87% · Recall@10 = 92.24% · Modality Gap = 0.036\n\nIn practical terms: given a sheet music page, the system finds the correct audio recording in its top 10 results more than 9 out of 10 times. Even when the top result is wrong, it is musically coherent — matching the correct polyphony 91.4% of the time and the correct meter 70.6% of the time.',
+          es: 'Recall@1 = 66.87% · Recall@10 = 92.24% · Modality Gap = 0.036\n\nEn términos prácticos: dada una página de partitura, el sistema encuentra la grabación de audio correcta entre sus 10 primeros resultados más de 9 de cada 10 veces. Incluso cuando el primer resultado es incorrecto, es musicalmente coherente — coincidiendo en polifonía en el 91.4% de los casos y en métrica en el 70.6%.',
+        },
+      },
+    ],
+    showGlobalStack: true,
   },
   {
     slug: 'self-role-prompting',
-    name: 'self-role-prompting',
+    name: { en: 'self-role-prompting', es: 'self-role-prompting' },
     description: {
       en: 'Zero-shot strategy where the model selects its reasoning role before solving the task.',
       es: 'Estrategia zero-shot donde el modelo auto-selecciona su rol de razonamiento antes de resolver la tarea.',
@@ -183,7 +222,10 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'llm-data-augmentation-recsys',
-    name: 'llm-data-augmentation-recsys',
+    name: {
+      en: 'llm-data-augmentation-recsys',
+      es: 'llm-data-augmentation-recsys',
+    },
     description: {
       en: 'Synthetic LLM-based data augmentation for recommender systems.',
       es: 'Data augmentation sintética con LLMs para sistemas de recomendación.',
@@ -208,7 +250,10 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'sequential-finetuning-paths',
-    name: 'sequential-finetuning-paths',
+    name: {
+      en: 'sequential-finetuning-paths',
+      es: 'sequential-finetuning-paths',
+    },
     description: {
       en: 'Benchmark of six fine-tuning paths for TinyLlama 1.1B.',
       es: 'Benchmark de seis paths de fine-tuning para TinyLlama 1.1B.',
@@ -219,7 +264,10 @@ export const PROJECTS: Project[] = [
     },
     link: 'https://github.com/dedmu5/sequential-finetuning-paths',
     stack: ['PyTorch', 'QLoRA', 'Axolotl'],
-    metrics: 'BLEU, ROUGE, BERTScore',
+    metrics: {
+      en: 'BLEU, ROUGE, BERTScore',
+      es: 'BLEU, ROUGE, BERTScore',
+    },
     details: {
       en: [
         'This benchmark tests how training order and checkpoint choice affect downstream language model behavior.',
@@ -234,14 +282,17 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'lumincity',
-    name: 'LUMinCity',
+    name: {
+      en: 'LUMinCity: Urban Simulation Platform',
+      es: 'LUMinCity: Plataforma de Simulación Urbana',
+    },
     description: {
-      en: 'Urban land-use simulation platform with a SaaS distribution portal and native desktop solver UI.',
-      es: 'Plataforma de simulacion de uso de suelo urbano con portal SaaS de distribucion y UI desktop para solver nativo.',
+      en: 'SaaS for software license distribution and a desktop app connecting a React frontend to a compiled urban simulation solver.',
+      es: 'Portal SaaS para distribución de licencias y app de escritorio que conecta un frontend React con un solver de simulación urbana.',
     },
     summary: {
-      en: 'Urban land-use simulation platform — web SaaS for license distribution and a desktop app connecting a React/Next.js frontend to a compiled scientific solver.',
-      es: 'Plataforma de simulacion de uso de suelo urbano: SaaS web para distribucion de licencias y app desktop que conecta un frontend React/Next.js con un solver cientifico compilado.',
+      en: 'SaaS for software license distribution and a desktop app connecting a React frontend to a compiled urban simulation solver.',
+      es: 'Portal SaaS para distribución de licencias y app de escritorio que conecta un frontend React con un solver de simulación urbana.',
     },
     stack: [
       'Next.js',
@@ -387,29 +438,133 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'uoct-vehicle-monitoring',
-    name: 'UOCT Vehicle Monitoring System',
+    name: {
+      en: 'UOCT Vehicle Monitoring',
+      es: 'Monitoreo Vehicular UOCT',
+    },
     description: {
-      en: 'Real-time CV pipeline with YOLOv11 and ByteTrack over 50 RTSP cameras.',
-      es: 'Pipeline CV en tiempo real con YOLOv11 y ByteTrack sobre 50 cámaras RTSP.',
+      en: 'Real-time CV pipeline over 50 RTSP cameras. Detection, tracking, and per-lane traffic metrics at 25 FPS.',
+      es: 'Pipeline de CV en tiempo real sobre 50 cámaras RTSP. Detección, seguimiento y métricas de tránsito por carril a 25 FPS.',
     },
     summary: {
-      en: 'Traffic analytics pipeline for detection, tracking, counting, and speed estimation.',
-      es: 'Pipeline de analítica de tráfico para detección, tracking, conteo y estimación de velocidad.',
+      en: 'Real-time CV pipeline over 50 RTSP cameras. Detection, tracking, and per-lane traffic metrics at 25 FPS.',
+      es: 'Pipeline de CV en tiempo real sobre 50 cámaras RTSP. Detección, seguimiento y métricas de tránsito por carril a 25 FPS.',
     },
-    stack: ['Python', 'PyTorch', 'Docker', 'Google Cloud'],
-    metrics:
-      '+45.3% MOTA, +10.2% IDF1, 96.3% counting accuracy, speed error 40% -> 9.3%',
+    stack: [
+      'Python',
+      'PyTorch',
+      'YOLOv11',
+      'ByteTrack',
+      'Docker',
+      'Google Cloud',
+      'RabbitMQ',
+      'OpenCV',
+      'scikit-learn',
+    ],
+    metrics: {
+      en: '+45.3% MOTA · +10.2% IDF1 · 96.3% counting accuracy · Speed error 40% → 9.3%',
+      es: '+45.3% MOTA · +10.2% IDF1 · 96.3% precisión en conteo · Error de velocidad 40% → 9.3%',
+    },
     details: {
-      en: [
-        'The system processes RTSP streams in real time and extracts operational traffic metrics.',
-        'Deployment combines containerized inference, message queues, and cloud infrastructure.',
-      ],
-      es: [
-        'El sistema procesa streams RTSP en tiempo real y extrae métricas operacionales de tráfico.',
-        'El despliegue combina inferencia en contenedores, colas de mensajes e infraestructura cloud.',
-      ],
+      en: [],
+      es: [],
     },
     images: [],
+    sections: [
+      {
+        title: { en: 'Context', es: 'Contexto' },
+        description: {
+          en: "Santiago's traffic authority (UOCT) needed a system to extract traffic metrics from their existing camera network automatically — without storing any video or images for privacy reasons. All processing had to run on-premise inside the UOCT network.",
+          es: 'La Unidad Operativa de Control de Tránsito (UOCT) necesitaba un sistema que extrajera métricas de tránsito de su red de cámaras existente de forma automática, sin almacenar video ni imágenes por razones de privacidad. Todo el procesamiento debía ejecutarse en los servidores internos de la UOCT.',
+        },
+      },
+      {
+        title: {
+          en: 'Hardware & Infrastructure',
+          es: 'Hardware e Infraestructura',
+        },
+        description: {
+          en: 'I selected and provisioned the on-premise hardware: a Dell PowerEdge R7615 with an Nvidia L4 GPU for inference, and a Lenovo ThinkStation as a secure gateway isolating the UOCT internal network from the external cloud. The gateway routes processed detections outward without exposing the camera feeds.',
+          es: 'Seleccioné y provisioné el hardware on-premise: un Dell PowerEdge R7615 con GPU Nvidia L4 para inferencia, y una Lenovo ThinkStation como gateway seguro que aísla la red interna de la UOCT de la nube externa. El gateway enruta las detecciones procesadas hacia afuera sin exponer las señales de las cámaras.',
+        },
+        images: [
+          {
+            src: '/projects/uoct/01-architecture.png',
+            alt: {
+              en: 'UOCT system architecture diagram',
+              es: 'Diagrama de arquitectura del sistema UOCT',
+            },
+          },
+        ],
+      },
+      {
+        title: { en: 'Detection & Tracking', es: 'Detección y Seguimiento' },
+        description: {
+          en: 'YOLOv11 fine-tuned on a custom dataset of Santiago street cameras covering 15+ vehicle classes. ByteTrack handles multi-object tracking across frames. The system processes 50 RTSP streams simultaneously at 25 FPS. No frames are stored at any point.',
+          es: 'YOLOv11 afinado sobre un dataset personalizado de cámaras de calles de Santiago, cubriendo más de 15 clases de vehículos. ByteTrack gestiona el seguimiento multi-objeto entre frames. El sistema procesa 50 streams RTSP simultáneamente a 25 FPS. No se almacena ningún frame en ningún momento.',
+        },
+        images: [
+          {
+            src: '/projects/uoct/02-detection-alameda-matucana.png',
+            alt: {
+              en: 'Vehicle detection on Alameda and Matucana',
+              es: 'Detección vehicular en Alameda y Matucana',
+            },
+          },
+          {
+            src: '/projects/uoct/03-detection-vicuna-mackenna.png',
+            alt: {
+              en: 'Vehicle detection on Vicuña Mackenna',
+              es: 'Detección vehicular en Vicuña Mackenna',
+            },
+          },
+        ],
+      },
+      {
+        title: { en: 'Lane Annotator', es: 'Anotador de Carriles' },
+        description: {
+          en: 'To extract per-lane metrics, I built a desktop annotation tool (UOCT Lane Annotator) that lets operators define lane polygons on camera frames and associate GPS coordinates to them. This produces the geometric mapping needed to assign detections to specific lanes and directions.',
+          es: 'Para extraer métricas por carril, desarrollé una herramienta de anotación de escritorio (UOCT Lane Annotator) que permite a los operadores definir polígonos de carril sobre los frames de las cámaras y asociarles coordenadas GPS. Esto genera el mapeo geométrico necesario para asignar detecciones a carriles y direcciones específicas.',
+        },
+        images: [
+          {
+            src: '/projects/uoct/04-lane-annotator.png',
+            alt: {
+              en: 'UOCT Lane Annotator desktop tool',
+              es: 'Herramienta desktop UOCT Lane Annotator',
+            },
+          },
+        ],
+      },
+      {
+        title: { en: 'Speed Calibration', es: 'Calibración de Velocidad' },
+        description: {
+          en: 'Converting pixel trajectories to real-world speeds required geometric calibration for each camera. I used Red buses as dynamic references — their physical dimensions are known and they circulate the same streets continuously. By observing multiple buses across frames and combining estimates using inverse-variance fusion, speed estimation error was reduced from 40% to 9.3%.',
+          es: 'Convertir trayectorias en píxeles a velocidades reales requirió calibración geométrica por cámara. Usé los buses Red como referencias dinámicas — sus dimensiones físicas son conocidas y circulan continuamente por las mismas calles. Observando múltiples buses en distintos frames y combinando estimaciones mediante fusión por varianza inversa, el error de estimación de velocidad se redujo de 40% a 9.3%.',
+        },
+      },
+      {
+        title: { en: 'Output', es: 'Salida' },
+        description: {
+          en: "Per-lane metrics — vehicle counts, queue lengths, flow, and speed — are transmitted to Entel's Google Cloud VPC via RabbitMQ. The VISOR UOCT dashboard (built by Entel on GCP) visualizes the data for UOCT operators in real time.",
+          es: 'Las métricas por carril — conteo de vehículos, largo de cola, flujo y velocidad — se transmiten a la VPC de Entel en Google Cloud mediante RabbitMQ. El dashboard VISOR UOCT (desarrollado por Entel en GCP) visualiza los datos para los operadores de la UOCT en tiempo real.',
+        },
+        images: [
+          {
+            src: '/projects/uoct/05-dashboard.png',
+            alt: {
+              en: 'VISOR UOCT dashboard',
+              es: 'Dashboard VISOR UOCT',
+            },
+            caption: {
+              en: 'VISOR UOCT — built by Entel on GCP.',
+              es: 'VISOR UOCT — desarrollado por Entel en GCP.',
+            },
+          },
+        ],
+      },
+    ],
+    showGlobalStack: true,
   },
 ]
 
