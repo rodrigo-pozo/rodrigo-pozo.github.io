@@ -55,6 +55,9 @@ function ImageGrid({
     return null
   }
 
+  const imageFitClass =
+    activeImage.fit === 'contain' ? 'object-contain p-3' : 'object-cover'
+
   return (
     <div className="space-y-3">
       <MorphingDialog
@@ -69,7 +72,7 @@ function ImageGrid({
             <MorphingDialogTrigger className="block">
               <Image
                 alt={activeImage.alt[language]}
-                className="aspect-[16/9] w-full bg-zinc-50 object-cover dark:bg-zinc-900"
+                className={`aspect-[16/9] w-full bg-zinc-50 dark:bg-zinc-900 ${imageFitClass}`}
                 height={675}
                 priority={activeIndex === 0}
                 src={activeImage.src}
@@ -158,7 +161,9 @@ function ImageGrid({
             >
               <Image
                 alt={image.alt[language]}
-                className={`h-16 w-28 rounded-md border object-cover transition-opacity ${
+                className={`h-16 w-28 rounded-md border bg-zinc-50 transition-opacity dark:bg-zinc-900 ${
+                  image.fit === 'contain' ? 'object-contain p-1' : 'object-cover'
+                } ${
                   index === activeIndex
                     ? 'border-zinc-950 opacity-100 dark:border-zinc-100'
                     : 'border-zinc-100 opacity-55 hover:opacity-85 dark:border-zinc-800'

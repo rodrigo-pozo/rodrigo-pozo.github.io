@@ -6,6 +6,7 @@ type ProjectImage = {
   src: string
   alt: LocalizedText
   caption?: LocalizedText
+  fit?: 'cover' | 'contain'
 }
 
 type ProjectSection = {
@@ -168,6 +169,20 @@ export const PROJECTS: Project[] = [
           en: 'No large-scale public dataset existed for this task. I built PDMX-FUSA from scratch: 116,626 public-domain piano scores transformed into 291,648 training examples, each containing a synthesized audio recording, a high-resolution score image, and MIDI data — all aligned at the measure level.',
           es: 'No existía un dataset público a gran escala para esta tarea. Construí PDMX-FUSA desde cero: 116,626 partituras de piano de dominio público transformadas en 291,648 ejemplos de entrenamiento, cada uno con una grabación de audio sintetizada, una imagen de partitura en alta resolución y datos MIDI — todos alineados a nivel de compás.',
         },
+        images: [
+          {
+            src: '/projects/fusa-net/dataset-pipeline.png',
+            alt: {
+              en: 'PDMX-FUSA dataset generation pipeline',
+              es: 'Pipeline de generacion del dataset PDMX-FUSA',
+            },
+            caption: {
+              en: 'Pipeline used to transform public-domain piano scores into aligned audio, score-image, and MIDI training examples.',
+              es: 'Pipeline usado para transformar partituras de piano de dominio publico en ejemplos alineados de audio, imagen de partitura y MIDI.',
+            },
+            fit: 'contain',
+          },
+        ],
       },
       {
         title: { en: 'The Architecture', es: 'La Arquitectura' },
@@ -177,11 +192,16 @@ export const PROJECTS: Project[] = [
         },
         images: [
           {
-            src: '/projects/fusa-net/01-architecture.png',
+            src: '/projects/fusa-net/fusa-training.png',
             alt: {
-              en: 'FUSA-Net dual-encoder architecture diagram',
-              es: 'Diagrama de arquitectura dual-encoder de FUSA-Net',
+              en: 'FUSA-Net dual-encoder training diagram',
+              es: 'Diagrama de entrenamiento dual-encoder de FUSA-Net',
             },
+            caption: {
+              en: 'Training setup for FUSA-Net: audio and score-image encoders, CCA-based projection, contrastive loss, and auxiliary musical prediction tasks.',
+              es: 'Esquema de entrenamiento de FUSA-Net: encoders de audio e imagen de partitura, proyeccion basada en CCA, loss contrastiva y tareas auxiliares de prediccion musical.',
+            },
+            fit: 'contain',
           },
         ],
       },
